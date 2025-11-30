@@ -12,6 +12,8 @@ body {
 header {
   padding: 18px 24px;
   color: white;
+  text-align: center;
+
 }
 
 header h1 {

@@ -13,7 +13,7 @@ header {
   /* keep existing layout rules—only add/replace background related properties */
   background-repeat: no-repeat;
   background-attachment: fixed;
-  padding: 30px;
+  padding: 40px;
   color: white;
 }
 

@@ -38,13 +38,16 @@ p {
 }
 /* Footer Styles */
 footer {
-  margin-top: 40px;
+  margin-top: 15px; /*tighened*/
   padding: 15px 0;
   background: linear-gradient(135deg, #4e54c8 0%, #8f94fb 50%, #a7ffeb 100%);
   color: #fff;
   text-align: center;
 }
 
+main section:last-of-type {
+  margin-bottom: 5px; /* super-tight */
+}
 .social-links {
   display: flex;
   justify-content: center;

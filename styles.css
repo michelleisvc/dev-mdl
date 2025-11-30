@@ -10,7 +10,8 @@ body {
 /* Header styling */
 header {
   background-color: #014421; /* deep forest green */
-  padding: 20px;
+  padding: 28px;
+  color: white;
 }
 
 header h1 {

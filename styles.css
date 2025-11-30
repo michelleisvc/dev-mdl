@@ -9,7 +9,10 @@ body {
 
 /* Header styling */
 header {
-  background-color: #014421; /* deep forest green */
+    background: linear-gradient(135deg, #4e54c8 0%, #8f94fb 50%, #a7ffeb 100%); color: #fff;
+  /* keep existing layout rules—only add/replace background related properties */
+  background-repeat: no-repeat;
+  background-attachment: fixed;
   padding: 30px;
   color: white;
 }

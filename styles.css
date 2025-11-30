@@ -5,49 +5,54 @@ body {
   font-size: 18px;
   margin: 0;
   padding: 0;
+  background: linear-gradient(135deg, #4e54c8 0%, #8f94fb 50%, #a7ffeb 100%);
 }
 
 /* Header styling */
 header {
-    background: linear-gradient(135deg, #4e54c8 0%, #8f94fb 50%, #a7ffeb 100%); color: #fff;
-  /* keep existing layout rules—only add/replace background related properties */
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  padding: 15px;
+  padding: 18px 24px;
   color: white;
 }
 
 header h1 {
-  font-size: 40px;
+  font-size: 32px; /* smaller header */
   margin: 0;
 }
 
 /* Layout for main content */
 main {
-  padding: 15px;
+  max-width: 760px;
+  margin: 24px auto 32px;
+  padding: 24px 24px 32px;
+  background-color: #fafafa; /* subtle off-white card */
+  border-radius: 18px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
 }
 
+/* Section headings */
 h2 {
-  margin-top: 22px;
-  margin-bottom: 8px;
+  font-size: 22px; /* smaller than before for better hierarchy */
+  margin-top: 24px;
+  margin-bottom: 6px;
 }
 
+/* Paragraphs */
 p {
-  line-height: 1.5;
+  line-height: 1.65; /* improved readability for monospace */
   max-width: 700px;
+  margin-top: 0;
+  margin-bottom: 12px;
 }
+
 /* Footer Styles */
 footer {
-  margin-top: 15px; /*tighened*/
-  padding: 15px 0;
-  background: linear-gradient(135deg, #4e54c8 0%, #8f94fb 50%, #a7ffeb 100%);
+  margin-top: 0;
+  padding: 16px 0 20px;
+  background: transparent; /* gradient already on body */
   color: #fff;
   text-align: center;
 }
 
-main section:last-of-type {
-  margin-bottom: 5px; /* super-tight */
-}
 .social-links {
   display: flex;
   justify-content: center;

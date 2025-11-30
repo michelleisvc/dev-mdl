@@ -5,62 +5,60 @@ body {
   font-size: 18px;
   margin: 0;
   padding: 0;
-  background: linear-gradient(135deg, #4e54c8 0%, #8f94fb 50%, #a7ffeb 100%);
+  background-color: #eaeefc; /* subtle page background */
 }
-
-.intro {
-  text-align: center;
-}
-
-.intro p {
-  margin-left: auto;
-  margin-right: auto;
-}
-
 
 /* Header styling */
 header {
-  padding: 18px 24px;
+  background: linear-gradient(135deg, #4e54c8 0%, #8f94fb 50%, #a7ffeb 100%);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  padding: 16px 0;
   color: white;
   text-align: center;
-
 }
 
 header h1 {
-  font-size: 32px; /* smaller header */
+  font-size: 32px; /* smaller for better hierarchy */
   margin: 0;
 }
 
 /* Layout for main content */
 main {
-  max-width: 760px;
-  margin: 24px auto 32px;
-  padding: 24px 24px 32px;
-  background-color: #fafafa; /* subtle off-white card */
-  border-radius: 18px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  max-width: 820px;           /* simple centered layout */
+  margin: 24px auto 32px;     /* centers main and tightens spacing */
+  padding: 24px 20px 32px;
+  background-color: #fdfdfd;  /* subtle off-white behind content */
+  border-radius: 12px;
 }
 
-/* Section headings */
+/* Intro paragraph centered only */
+.intro {
+  text-align: center;
+  margin: 8px auto 32px;
+}
+
+/* Headings */
 h2 {
-  font-size: 22px; /* smaller than before for better hierarchy */
-  margin-top: 24px;
-  margin-bottom: 6px;
+  font-size: 22px;            /* smaller than before */
+  margin: 18px 0 6px;
 }
 
 /* Paragraphs */
 p {
-  line-height: 1.65; /* improved readability for monospace */
+  line-height: 1.65;          /* nicer for monospace */
   max-width: 700px;
-  margin-top: 0;
-  margin-bottom: 12px;
+}
+
+/* Sections spacing */
+section {
+  margin-bottom: 24px;
 }
 
 /* Footer Styles */
 footer {
-  margin-top: 0;
-  padding: 16px 0 20px;
-  background: transparent; /* gradient already on body */
+  padding: 14px 0 18px;
+  background: linear-gradient(135deg, #4e54c8 0%, #8f94fb 50%, #a7ffeb 100%);
   color: #fff;
   text-align: center;
 }

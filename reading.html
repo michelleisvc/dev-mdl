@@ -1,0 +1,167 @@
+<section class="reading-section" id="bookshelf">
+  <h2>What I’m Reading → The List</h2>
+  <p class="reading-intro">
+    Readings shaping my thinking and the books that keep me grounded.
+  </p>
+
+  <div id="book-grid" class="book-grid">
+    <!-- Book cards will be injected here by JavaScript -->
+  </div>
+
+  <p id="book-error" class="book-error" hidden>
+    There was a problem loading the reading list. Try refreshing the page.
+  </p>
+</section>
+
+<script>
+  // URL of your published CSV
+  const BOOKS_CSV_URL =
+    "https://docs.google.com/spreadsheets/d/e/2PACX-1vSE6uzhuNaTn-QtJOl2wEoYD2p4SNWWvyYWMM_pWlM6-TuJ2crMRnw8_MqcY53ZHTMTslWroehpuk9E/pub?gid=2046680011&single=true&output=csv";
+
+  // Simple CSV parser that handles quotes + commas
+  function parseCSV(text) {
+    const rows = [];
+    let row = [];
+    let cell = "";
+    let inQuotes = false;
+
+    for (let i = 0; i < text.length; i++) {
+      const char = text[i];
+      const next = text[i + 1];
+
+      if (inQuotes) {
+        if (char === '"') {
+          if (next === '"') {
+            cell += '"'; // escaped quote
+            i++;
+          } else {
+            inQuotes = false;
+          }
+        } else {
+          cell += char;
+        }
+      } else {
+        if (char === '"') {
+          inQuotes = true;
+        } else if (char === ",") {
+          row.push(cell.trim());
+          cell = "";
+        } else if (char === "\r") {
+          // ignore
+        } else if (char === "\n") {
+          row.push(cell.trim());
+          if (row.some(v => v !== "")) {
+            rows.push(row);
+          }
+          row = [];
+          cell = "";
+        } else {
+          cell += char;
+        }
+      }
+    }
+
+    if (cell.length > 0 || row.length > 0) {
+      row.push(cell.trim());
+      if (row.some(v => v !== "")) {
+        rows.push(row);
+      }
+    }
+
+    return rows;
+  }
+
+  function createBookCard(book) {
+    const article = document.createElement("article");
+    article.className = "book-card";
+
+    const header = document.createElement("header");
+    header.className = "book-header";
+
+    const titleEl = document.createElement("h3");
+    titleEl.className = "book-title";
+    titleEl.textContent = book.title || "Untitled";
+
+    const authorEl = document.createElement("p");
+    authorEl.className = "book-author";
+    authorEl.textContent = book.author || "Unknown author";
+
+    header.appendChild(titleEl);
+    header.appendChild(authorEl);
+
+    const meta = document.createElement("div");
+    meta.className = "book-meta";
+
+    if (book.genre) {
+      const genrePill = document.createElement("span");
+      genrePill.className = "book-pill";
+      genrePill.textContent = book.genre;
+      meta.appendChild(genrePill);
+    }
+
+    if (book.subGenre) {
+      const subGenrePill = document.createElement("span");
+      subGenrePill.className = "book-pill";
+      subGenrePill.textContent = book.subGenre;
+      meta.appendChild(subGenrePill);
+    }
+
+    article.appendChild(header);
+    article.appendChild(meta);
+
+    return article;
+  }
+
+  function loadBookshelf() {
+    const grid = document.getElementById("book-grid");
+    const errorEl = document.getElementById("book-error");
+
+    fetch(BOOKS_CSV_URL)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.text();
+      })
+      .then(text => {
+        const rows = parseCSV(text);
+        if (!rows.length) {
+          throw new Error("No data found in CSV");
+        }
+
+        const headers = rows[0].map(h => h.toLowerCase());
+        const titleIdx = headers.indexOf("title");
+        const authorIdx = headers.indexOf("author");
+        const genreIdx = headers.indexOf("genre");
+        const subGenreIdx = headers.indexOf("sub-genre");
+
+        rows.slice(1).forEach(cols => {
+          const title = cols[titleIdx] || "";
+          const author = cols[authorIdx] || "";
+          const genre = cols[genreIdx] || "";
+          const subGenre = cols[subGenreIdx] || "";
+
+          if (!title && !author) return; // skip empty rows
+
+          const card = createBookCard({
+            title,
+            author,
+            genre,
+            subGenre,
+          });
+          grid.appendChild(card);
+        });
+      })
+      .catch(err => {
+        console.error("Error loading bookshelf:", err);
+        if (errorEl) errorEl.hidden = false;
+      });
+  }
+
+  // Run after DOM is ready
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", loadBookshelf);
+  } else {
+    loadBookshelf();
+  }
+</script>

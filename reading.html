@@ -1,3 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>MDL Bookshelf</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
 <section class="reading-section" id="bookshelf">
   <h2>What I’m Reading → The List</h2>
   <p class="reading-intro">
@@ -5,16 +15,93 @@
   </p>
 
   <div id="book-grid" class="book-grid">
-    <!-- TEMP TEST CARD -->
+    <!-- TEMP TEST CARD to confirm CSS + HTML works -->
     <article class="book-card">
       <header class="book-header">
-        <h3 class="book-title">Crossing the Chasm</h3>
-        <p class="book-author">Geoffrey A. Moore</p>
+        <h3 class="book-title">TEST CARD</h3>
+        <p class="book-author">If you see a card with a black border, CSS works.</p>
       </header>
       <div class="book-meta">
-        <span class="book-pill">Business</span>
-        <span class="book-pill">Go-to-market</span>
+        <span class="book-pill">Genre</span>
+        <span class="book-pill">Sub-Genre</span>
       </div>
     </article>
   </div>
+
+  <p id="book-error" class="book-error" hidden>
+    There was a problem loading your reading list.
+  </p>
 </section>
+
+
+<script>
+// --- YOUR PUBLIC CSV URL ---
+const BOOKS_CSV_URL =
+  "https://docs.google.com/spreadsheets/d/e/2PACX-1vSE6uzhuNaTn-QtJOl2wEoYD2p4SNWWvyYWMM_pWlM6-TuJ2crMRnw8_MqcY53ZHTMTslWroehpuk9E/pub?gid=2046680011&single=true&output=csv";
+
+// --- BASIC CSV PARSER ---
+function parseCSV(text) {
+  const rows = text.split("\n").map(r => r.split(","));
+  return rows;
+}
+
+function createCard({ title, author, genre, subGenre }) {
+  const card = document.createElement("article");
+  card.className = "book-card";
+
+  card.innerHTML = `
+    <header class="book-header">
+      <h3 class="book-title">${title}</h3>
+      <p class="book-author">${author}</p>
+    </header>
+
+    <div class="book-meta">
+      ${genre ? `<span class="book-pill">${genre}</span>` : ""}
+      ${subGenre ? `<span class="book-pill">${subGenre}</span>` : ""}
+    </div>
+  `;
+
+  return card;
+}
+
+function loadBooks() {
+  fetch(BOOKS_CSV_URL)
+    .then(res => res.text())
+    .then(text => {
+      const rows = parseCSV(text);
+      const headers = rows[0].map(h => h.trim().toLowerCase());
+
+      const titleIdx = headers.indexOf("title");
+      const authorIdx = headers.indexOf("author");
+      const genreIdx = headers.indexOf("genre");
+      const subIdx = headers.indexOf("sub-genre");
+
+      const grid = document.getElementById("book-grid");
+
+      // Remove the test card AFTER confirming CSS works
+      grid.innerHTML = "";
+
+      rows.slice(1).forEach(row => {
+        if (!row[titleIdx]) return;
+
+        const card = createCard({
+          title: row[titleIdx],
+          author: row[authorIdx],
+          genre: row[genreIdx],
+          subGenre: row[subIdx]
+        });
+
+        grid.appendChild(card);
+      });
+    })
+    .catch(err => {
+      document.getElementById("book-error").hidden = false;
+      console.error("Bookshelf error:", err);
+    });
+}
+
+document.addEventListener("DOMContentLoaded", loadBooks);
+</script>
+
+</body>
+</html>

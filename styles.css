@@ -123,16 +123,12 @@ details {
   padding: 10px 0;
   border-bottom: 1px solid #ccc;
 }
+
 /* ===== BOOKSHELF / READING LIST ===== */
 
 .reading-section {
   padding: 15px;
   margin-top: 20px;
-}
-
-.reading-section h2 {
-  margin-top: 0;
-  margin-bottom: 4px;
 }
 
 .reading-intro {
@@ -141,14 +137,13 @@ details {
   max-width: 700px;
 }
 
-/* Layout for the cards */
 .book-grid {
   display: grid;
   grid-template-columns: 1fr;
   gap: 12px;
 }
 
-@media (min-width: 700px) {
+@media (min-width: 650px) {
   .book-grid {
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   }
@@ -161,13 +156,9 @@ details {
   background: white;
 }
 
-.book-header {
-  margin-bottom: 4px;
-}
-
 .book-title {
-  font-size: 1.05rem;
   margin: 0;
+  font-size: 1.05rem;
 }
 
 .book-author {
@@ -180,20 +171,19 @@ details {
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
-  margin-bottom: 4px;
+  margin-top: 4px;
 }
 
 .book-pill {
-  display: inline-block;
   padding: 2px 8px;
+  border: 1px solid black;
   border-radius: 999px;
   font-size: 0.75rem;
-  border: 1px solid black;
   white-space: nowrap;
 }
 
 .book-error {
+  color: #b00020;
   margin-top: 12px;
   font-size: 0.85rem;
-  color: #b00020;
 }

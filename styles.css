@@ -123,3 +123,81 @@ details {
   padding: 10px 0;
   border-bottom: 1px solid #ccc;
 }
+/* ===== BOOKSHELF / READING LIST ===== */
+
+.reading-section {
+  padding: 15px;
+  margin-top: 20px;
+}
+
+.reading-section h2 {
+  margin-top: 0;
+  margin-bottom: 4px;
+}
+
+.reading-intro {
+  margin-top: 0;
+  margin-bottom: 16px;
+  max-width: 700px;
+}
+
+/* Layout for the cards */
+.book-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+/* On wider screens, show cards in a grid */
+@media (min-width: 700px) {
+  .book-grid {
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  }
+}
+
+.book-card {
+  border: 1px solid #000;
+  border-radius: 8px;
+  padding: 10px 12px;
+  background: #fff;
+}
+
+/* Title + author */
+.book-header {
+  margin-bottom: 4px;
+}
+
+.book-title {
+  font-size: 1.05rem;
+  margin: 0;
+}
+
+.book-author {
+  margin: 2px 0 6px;
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+/* Genre / sub-genre pills */
+.book-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 4px;
+}
+
+.book-pill {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  border: 1px solid #000;
+  white-space: nowrap;
+}
+
+/* Error message if the CSV fails to load */
+.book-error {
+  margin-top: 12px;
+  font-size: 0.85rem;
+  color: #b00020;
+}

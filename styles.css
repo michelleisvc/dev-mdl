@@ -116,3 +116,29 @@ section a {
   text-decoration-thickness: 1px;
   text-underline-offset: 3px;
 }
+
+/* Journal Accordion Styles */
+details {
+  margin-bottom: 18px;
+  padding: 10px 0;
+  border-bottom: 1px solid #ccc;
+}
+
+summary {
+  font-family: monospace;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  list-style: none;
+}
+
+summary::-webkit-details-marker {
+  display: none;
+}
+
+details p {
+  margin: 8px 0 0 0;
+  font-family: monospace;
+  font-size: 18px;
+  line-height: 1.5;
+}

@@ -123,7 +123,6 @@ details {
   padding: 10px 0;
   border-bottom: 1px solid #ccc;
 }
-
 /* ===== BOOKSHELF / READING LIST ===== */
 
 .reading-section {
@@ -137,6 +136,26 @@ details {
   max-width: 700px;
 }
 
+/* Filter controls */
+.bookshelf-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.bookshelf-controls label {
+  font-size: 0.9rem;
+}
+
+#genre-filter {
+  font-family: inherit; /* keep your monospace */
+  font-size: 0.9rem;
+  padding: 4px 6px;
+}
+
+/* Card grid */
 .book-grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -156,6 +175,10 @@ details {
   background: white;
 }
 
+.book-header {
+  margin-bottom: 4px;
+}
+
 .book-title {
   margin: 0;
   font-size: 1.05rem;
@@ -167,6 +190,7 @@ details {
   opacity: 0.8;
 }
 
+/* Genre / Sub-Genre pills */
 .book-meta {
   display: flex;
   flex-wrap: wrap;

@@ -8,100 +8,143 @@
 
 <body>
 
-<section class="reading-section" id="bookshelf">
-  <h2>What I’m Reading → The List</h2>
-  <p class="reading-intro">
-    Readings shaping my thinking and the books that keep me grounded.
-  </p>
+  <!-- Same header as other pages -->
+  <header>
+    <h1>hello world</h1>
+  </header>
 
-  <div id="book-grid" class="book-grid">
-    <!-- TEMP TEST CARD to confirm CSS + HTML works -->
-    <article class="book-card">
-      <header class="book-header">
-        <h3 class="book-title">TEST CARD</h3>
-        <p class="book-author">If you see a card with a black border, CSS works.</p>
-      </header>
-      <div class="book-meta">
-        <span class="book-pill">Genre</span>
-        <span class="book-pill">Sub-Genre</span>
+  <main>
+    <section class="reading-section" id="bookshelf">
+      <h2>What I’m Reading → The List</h2>
+      <p class="reading-intro">
+        Readings shaping my thinking and the books that keep me grounded.
+      </p>
+
+      <!-- Filter controls -->
+      <div class="bookshelf-controls">
+        <label for="genre-filter">Filter by genre:</label>
+        <select id="genre-filter">
+          <option value="all">All genres</option>
+          <!-- JS will add more options here -->
+        </select>
       </div>
-    </article>
-  </div>
 
-  <p id="book-error" class="book-error" hidden>
-    There was a problem loading your reading list.
-  </p>
-</section>
+      <!-- Cards go here -->
+      <div id="book-grid" class="book-grid"></div>
 
+      <p id="book-error" class="book-error" hidden>
+        There was a problem loading your reading list.
+      </p>
+    </section>
+  </main>
 
-<script>
-// --- YOUR PUBLIC CSV URL ---
-const BOOKS_CSV_URL =
-  "https://docs.google.com/spreadsheets/d/e/2PACX-1vSE6uzhuNaTn-QtJOl2wEoYD2p4SNWWvyYWMM_pWlM6-TuJ2crMRnw8_MqcY53ZHTMTslWroehpuk9E/pub?gid=2046680011&single=true&output=csv";
+  <script>
+    // --- Your public CSV URL ---
+    const BOOKS_CSV_URL =
+      "https://docs.google.com/spreadsheets/d/e/2PACX-1vSE6uzhuNaTn-QtJOl2wEoYD2p4SNWWvyYWMM_pWlM6-TuJ2crMRnw8_MqcY53ZHTMTslWroehpuk9E/pub?gid=2046680011&single=true&output=csv";
 
-// --- BASIC CSV PARSER ---
-function parseCSV(text) {
-  const rows = text.split("\n").map(r => r.split(","));
-  return rows;
-}
+    // Basic CSV parser (works as long as cells don't have commas in them)
+    function parseCSV(text) {
+      return text
+        .trim()
+        .split("\n")
+        .map(row => row.split(","));
+    }
 
-function createCard({ title, author, genre, subGenre }) {
-  const card = document.createElement("article");
-  card.className = "book-card";
+    function createCard({ title, author, genre, subGenre }) {
+      const card = document.createElement("article");
+      card.className = "book-card";
+      card.setAttribute("data-genre", genre || "");
 
-  card.innerHTML = `
-    <header class="book-header">
-      <h3 class="book-title">${title}</h3>
-      <p class="book-author">${author}</p>
-    </header>
+      card.innerHTML = `
+        <header class="book-header">
+          <h3 class="book-title">${title || "Untitled"}</h3>
+          <p class="book-author">${author || "Unknown author"}</p>
+        </header>
+        <div class="book-meta">
+          ${genre ? `<span class="book-pill">${genre}</span>` : ""}
+          ${subGenre ? `<span class="book-pill">${subGenre}</span>` : ""}
+        </div>
+      `;
 
-    <div class="book-meta">
-      ${genre ? `<span class="book-pill">${genre}</span>` : ""}
-      ${subGenre ? `<span class="book-pill">${subGenre}</span>` : ""}
-    </div>
-  `;
+      return card;
+    }
 
-  return card;
-}
+    function populateGenreFilter(genres) {
+      const select = document.getElementById("genre-filter");
+      const uniqueGenres = Array.from(new Set(genres.filter(g => g && g.trim() !== "")))
+        .sort((a, b) => a.localeCompare(b));
 
-function loadBooks() {
-  fetch(BOOKS_CSV_URL)
-    .then(res => res.text())
-    .then(text => {
-      const rows = parseCSV(text);
-      const headers = rows[0].map(h => h.trim().toLowerCase());
-
-      const titleIdx = headers.indexOf("title");
-      const authorIdx = headers.indexOf("author");
-      const genreIdx = headers.indexOf("genre");
-      const subIdx = headers.indexOf("sub-genre");
-
-      const grid = document.getElementById("book-grid");
-
-      // Remove the test card AFTER confirming CSS works
-      grid.innerHTML = "";
-
-      rows.slice(1).forEach(row => {
-        if (!row[titleIdx]) return;
-
-        const card = createCard({
-          title: row[titleIdx],
-          author: row[authorIdx],
-          genre: row[genreIdx],
-          subGenre: row[subIdx]
-        });
-
-        grid.appendChild(card);
+      uniqueGenres.forEach(genre => {
+        const opt = document.createElement("option");
+        opt.value = genre;
+        opt.textContent = genre;
+        select.appendChild(opt);
       });
-    })
-    .catch(err => {
-      document.getElementById("book-error").hidden = false;
-      console.error("Bookshelf error:", err);
-    });
-}
+    }
 
-document.addEventListener("DOMContentLoaded", loadBooks);
-</script>
+    function applyGenreFilter() {
+      const select = document.getElementById("genre-filter");
+      const value = select.value;
+      const cards = document.querySelectorAll(".book-card");
+
+      cards.forEach(card => {
+        const cardGenre = card.getAttribute("data-genre") || "";
+        if (value === "all" || cardGenre === value) {
+          card.style.display = "";
+        } else {
+          card.style.display = "none";
+        }
+      });
+    }
+
+    function loadBooks() {
+      const grid = document.getElementById("book-grid");
+      const errorEl = document.getElementById("book-error");
+
+      fetch(BOOKS_CSV_URL)
+        .then(res => res.text())
+        .then(text => {
+          const rows = parseCSV(text);
+          if (!rows.length) {
+            throw new Error("No data in CSV");
+          }
+
+          const headers = rows[0].map(h => h.trim().toLowerCase());
+          const titleIdx = headers.indexOf("title");
+          const authorIdx = headers.indexOf("author");
+          const genreIdx = headers.indexOf("genre");
+          const subIdx = headers.indexOf("sub-genre");
+
+          const genresSeen = [];
+
+          rows.slice(1).forEach(row => {
+            const title = row[titleIdx] || "";
+            const author = row[authorIdx] || "";
+            const genre = row[genreIdx] || "";
+            const subGenre = row[subIdx] || "";
+
+            if (!title && !author) return; // skip truly empty rows
+
+            const card = createCard({ title, author, genre, subGenre });
+            grid.appendChild(card);
+
+            if (genre) genresSeen.push(genre);
+          });
+
+          populateGenreFilter(genresSeen);
+
+          const filterSelect = document.getElementById("genre-filter");
+          filterSelect.addEventListener("change", applyGenreFilter);
+        })
+        .catch(err => {
+          console.error("Bookshelf error:", err);
+          if (errorEl) errorEl.hidden = false;
+        });
+    }
+
+    document.addEventListener("DOMContentLoaded", loadBooks);
+  </script>
 
 </body>
 </html>

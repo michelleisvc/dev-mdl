@@ -1,118 +1,69 @@
-/* Global typography */
-body {
-  font-family: ui-monospace, Menlo, Monaco, Consolas, "Liberation Mono",
-    "Courier New", monospace;
-  color: #111;
-  font-size: 18px;
-  margin: 0;
-  padding: 0;
-  background: #e9ecff; /* subtle page background */
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>MDL’s Mind</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
 
-/* Header styling */
-header {
-  background: linear-gradient(135deg, #4e54c8 0%, #8f94fb 50%, #a7ffeb 100%);
-  color: #fff;
-  padding: 18px 16px;
-  text-align: center; /* center header content */
-}
+<body>
+  <header class="mind-header">
+    <h1>MDL’s Mind</h1>
+    <p>Musing on markets, momentum, and the future.</p>
+  </header>
 
-header h1 {
-  font-size: 36px;
-  margin: 0 0 6px 0; /* slight tightening */
-  text-align: center;
-}
+  <main>
+    <div class="content-wrapper">
 
-header p {
-  text-align: center;
-  margin-top: 4px;
-  font-size: 18px;
-  line-height: 1.6;
-}
+      <!-- Entry 1: Today -->
+      <details>
+        <summary>Signal in the Noise: Early Thoughts on AI Agents</summary>
+        <p><strong>Date:</strong> December 01, 2025</p>
+        <p>
+          Spent the morning synthesizing how agent-native workflows reshape expectations around
+          trust and autonomy. Noting early patterns that feel similar to the shift from on-prem to cloud:
+          once people feel the convenience, the baseline expectations change permanently.
+        </p>
+      </details>
 
-/* Layout for main content */
-main {
-  padding: 24px 16px 40px;
-}
+      <!-- Entry 2 -->
+      <details>
+        <summary>Patterns from Founder Conversations</summary>
+        <p><strong>Date:</strong> November 30, 2025</p>
+        <p>
+          Had a few calls with technical founders building infra for multimodal models. The biggest
+          consistent pain point: identity and permissioning for agents operating across tools. Everyone
+          feels the gap, no one believes the existing stack solves it.
+        </p>
+      </details>
 
-/* Centered content area */
-.content-wrapper {
-  max-width: 760px;
-  margin: 0 auto;
-  background: #fdfdfd; /* subtle off-white */
-  padding: 32px 24px 40px;
-  border-radius: 16px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
-}
+      <!-- Entry 3 -->
+      <details>
+        <summary>Notes on Market Momentum</summary>
+        <p><strong>Date:</strong> November 29, 2025</p>
+        <p>
+          Rough draft of a framework to track demand signals across B2B use cases. Early adopters
+          are clustering in finance, e-commerce ops, and customer support—segments where speed-to-action
+          matters more than perfect accuracy.
+        </p>
+      </details>
 
-/* Centered intro paragraph only */
-.intro {
-  text-align: center;
-  margin: 0 auto 32px;
-}
+      <!-- Entry 4 -->
+      <details>
+        <summary>Reflections on Trust & Safety Themes</summary>
+        <p><strong>Date:</strong> November 28, 2025</p>
+        <p>
+          Realized many historical trust frameworks assume static systems and human gatekeepers.
+          Agents break both assumptions. Thinking through how those mental models need to evolve if
+          autonomy becomes the default.
+        </p>
+      </details>
 
-/* Headings */
-h2 {
-  margin-top: 24px;
-  margin-bottom: 8px;
-  font-size: 26px;
-}
+    </div>
+  </main>
 
-h2 a {
-  color: inherit;
-  text-decoration: none;
-  border-bottom: 2px solid rgba(78, 84, 200, 0.3);
-  padding-bottom: 2px;
-}
-
-h2 a:hover {
-  border-color: rgba(78, 84, 200, 0.9);
-}
-
-/* Paragraphs */
-p {
-  line-height: 1.68;
-  max-width: 700px;
-}
-
-/* Sections */
-section {
-  margin-bottom: 28px;
-}
-
-section:last-of-type {
-  margin-bottom: 0;
-}
-
-/* Footer Styles */
-footer {
-  margin-top: 32px;
-  padding: 15px 0;
-  background: linear-gradient(135deg, #4e54c8 0%, #8f94fb 50%, #a7ffeb 100%);
-  color: #fff;
-  text-align: center;
-}
-
-.social-links {
-  display: flex;
-  justify-content: center;
-  gap: 24px;
-  align-items: center;
-}
-
-.social-links a svg {
-  transition: transform 0.2s ease, opacity 0.2s ease;
-}
-
-.social-links a:hover svg {
-  transform: scale(1.15);
-  opacity: 0.85;
-}
-
-/* Email link style in “Say Hello” section */
-section a {
-  color: inherit;
-  text-decoration: underline;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 3px;
-}
+  <footer>
+    <p>© 2025 Michelle Dhansinghani Limon</p>
+  </footer>
+</body>
+</html>

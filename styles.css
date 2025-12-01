@@ -148,7 +148,6 @@ details {
   gap: 12px;
 }
 
-/* On wider screens, show cards in a grid */
 @media (min-width: 700px) {
   .book-grid {
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -156,13 +155,12 @@ details {
 }
 
 .book-card {
-  border: 1px solid #000;
+  border: 1px solid black;
   border-radius: 8px;
   padding: 10px 12px;
-  background: #fff;
+  background: white;
 }
 
-/* Title + author */
 .book-header {
   margin-bottom: 4px;
 }
@@ -178,7 +176,6 @@ details {
   opacity: 0.8;
 }
 
-/* Genre / sub-genre pills */
 .book-meta {
   display: flex;
   flex-wrap: wrap;
@@ -191,11 +188,10 @@ details {
   padding: 2px 8px;
   border-radius: 999px;
   font-size: 0.75rem;
-  border: 1px solid #000;
+  border: 1px solid black;
   white-space: nowrap;
 }
 
-/* Error message if the CSV fails to load */
 .book-error {
   margin-top: 12px;
   font-size: 0.85rem;

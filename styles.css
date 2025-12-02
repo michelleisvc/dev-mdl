@@ -17,7 +17,7 @@ body {
 header {
   background: linear-gradient(135deg, #4e54c8 0%, #8f94fb 50%, #a7ffeb 100%);
   color: #fff;
-  padding: 18px 16px; /* keep header size consistent across pages */
+  padding: 16px 16px; /* keep header size consistent across pages */
   text-align: center;
 }
 

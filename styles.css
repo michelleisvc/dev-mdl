@@ -111,6 +111,48 @@ section a {
 }
 
 /* =====================================
+   BLOG POST LAYOUT (MDL'S MIND POSTS)
+   ===================================== */
+.blog-post {
+  max-width: 760px;
+  margin: 0 auto 24px;
+  background: #fdfdfd;
+  padding: 24px 20px;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+}
+
+.blog-post h2 {
+  margin-top: 0;
+  font-size: 26px;
+}
+
+.blog-meta {
+  margin: 4px 0 16px;
+  font-size: 0.9rem;
+  opacity: 0.7;
+}
+
+.subscribe-section {
+  max-width: 760px;
+  margin: 0 auto 16px;
+  padding: 18px 20px 20px;
+  border-radius: 12px;
+  background: rgba(78, 84, 200, 0.08);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.03);
+}
+
+.subscribe-section h3 {
+  margin-top: 0;
+  margin-bottom: 8px;
+  font-size: 20px;
+}
+
+.subscribe-section p {
+  margin: 0;
+}
+
+/* =====================================
    FOOTER & SOCIAL ICONS
    ===================================== */
 footer {
@@ -288,5 +330,10 @@ details p {
 
   .social-links {
     gap: 16px;
+  }
+
+  .blog-post,
+  .subscribe-section {
+    padding: 18px 14px;
   }
 }

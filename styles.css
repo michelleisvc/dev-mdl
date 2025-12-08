@@ -111,15 +111,16 @@ section a {
 }
 
 /* =====================================
-   BLOG POST LAYOUT (MDL'S MIND POSTS)
+   BLOG POST LAYOUT (WHITE CARD STYLE)
    ===================================== */
 .blog-post {
   max-width: 760px;
-  margin: 0 auto 24px;
-  background: #fdfdfd;
-  padding: 24px 20px;
-  border-radius: 16px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+  margin: 0 auto 32px;
+  background: #ffffff; /* white background */
+  padding: 28px 24px;
+  border-radius: 16px; /* rounded corners */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06); /* soft shadow */
+  border: 1px solid rgba(78, 84, 200, 0.15); /* subtle purple border */
 }
 
 .blog-post h2 {
@@ -133,13 +134,15 @@ section a {
   opacity: 0.7;
 }
 
+/* Subscribe card under blog posts */
 .subscribe-section {
   max-width: 760px;
-  margin: 0 auto 16px;
-  padding: 18px 20px 20px;
-  border-radius: 12px;
-  background: rgba(78, 84, 200, 0.08);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.03);
+  margin: 0 auto 24px;
+  padding: 20px 24px;
+  border-radius: 16px;
+  background: #ffffff;
+  border: 1px solid rgba(78, 84, 200, 0.15);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
 }
 
 .subscribe-section h3 {
@@ -210,7 +213,7 @@ details p {
 }
 
 /* =====================================
-   BOOKSHELF (UNCHANGED PER REQUEST)
+   BOOKSHELF
    ===================================== */
 .reading-section {
   padding: 15px;
@@ -334,6 +337,6 @@ details p {
 
   .blog-post,
   .subscribe-section {
-    padding: 18px 14px;
+    padding: 20px 16px;
   }
 }
